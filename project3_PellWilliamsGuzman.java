@@ -16,7 +16,9 @@ public class project3_PellWilliamsGuzman
 
    public static void main(String[] args) throws IOException
    {
-   
+      File infile = new File("FDs.txt");
+      
+      PrintWriter output = new PrinterWriter("superkeys.txt");
    
    }
 }
