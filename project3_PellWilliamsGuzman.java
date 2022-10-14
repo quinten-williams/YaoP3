@@ -13,24 +13,6 @@ import java.io.*; //IOException FileReader FileWriter
 
 public class project3_PellWilliamsGuzmanTestTwo
 {
-   static void subsets(char[] arr)
-   {
-      int count = arr.length;
-      
-      for(int i = 0; i < (1 << count); i++)
-      {
-         for(int j = 0; j < count; j++) 
-         {
-            if((i & (1 << j)) > 0) 
-            {
-               //System.out.print(arr[j] + "");  
-            }
-         }
-         
-        // System.out.print("\n");
-      }
-   
-   }
    
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
