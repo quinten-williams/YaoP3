@@ -77,9 +77,12 @@ public class project3_PellWilliamsGuzman
             
             output.print(subset.get(i).get(j));
          }
-         output.print("\n");
+         if(i != 0) 
+         {
+            output.print("\n");
+         }
       }
-     
+      output.close();
       
       /*
          Algorithm:
@@ -87,9 +90,9 @@ public class project3_PellWilliamsGuzman
          closure = {k}; /*  K is one of the possible superkeys, which 
          are output of hw1. You must run each entry of the output of hw1 
          against this algorithm to determine which entry is a superkey
-      */ 
-         File closures = new File("closures.txt");
-         Scanner scanTwo = new Scanner(closures);
+      */
+         File keys = new File("closures.txt");
+         Scanner scanTwo = new Scanner(keys);
          String tempTwo = "";
 
          while(scanTwo.hasNextLine())
@@ -97,7 +100,7 @@ public class project3_PellWilliamsGuzman
             tempTwo = scanTwo.nextLine();
             System.out.println(tempTwo);
          }
-         /*
+     /*    
          while(    
          do {
             for(each FD U -> V in FD) do {
@@ -109,6 +112,5 @@ public class project3_PellWilliamsGuzman
       */
       scan.close();
       scanTwo.close();
-      output.close();
    }
 }
