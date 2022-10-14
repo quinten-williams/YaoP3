@@ -22,7 +22,7 @@ public class project3_PellWilliamsGuzman
          return;
       }
       
-
+   
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    
       output.add(nums.get(index));
@@ -91,33 +91,37 @@ public class project3_PellWilliamsGuzman
          are output of hw1. You must run each entry of the output of hw1 
          against this algorithm to determine which entry is a superkey
       */
-         File keys = new File("closures.txt");
-         Scanner scanTwo = new Scanner(keys);
-         String tempTwo = "";
-         boolean verify = true;
+      File keys = new File("closures.txt");
+      Scanner scanTwo = new Scanner(keys);
+      String tempTwo = "";
+      boolean verify = true;
            
-         while(scanTwo.hasNextLine())
-         {   
-            tempTwo = scanTwo.nextLine();
+      while(scanTwo.hasNextLine())
+      {
+         tempTwo = scanTwo.nextLine();
             //System.out.println(tempTwo);
-            do
+         do
+         {
+            for(int i = 0; i < count; i++) // loop for each FD
             {
-               for(int i = 0; i < count; i++)
+               char[] Uchar = U.get(i).toCharArray();
+               char[] charOfkey = tempTwo.toCharArray();
+               for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
                {
-                  if() 
+                  for(int k = 0; k < Uchar.length; k++) // loop for characters in the U (left) of the FD
                   {
-                  
+                     char hold = Uchar[k];
+                     if(charOfkey[j] == hold)
+                     {
+                     
+                     }
                   }
-                  
+               
                }
-               if()
-               {
-                  verify = false;
-               }
-            
-            }while(verify);
-         }
-     /*    
+            }
+         
+         
+         }while(verify);     /*    
          while(    
          do {
             for(each FD U -> V in FD) do {
@@ -127,7 +131,9 @@ public class project3_PellWilliamsGuzman
             } //  end of the for-loop
       
       */
-      scan.close();
-      scanTwo.close();
+         scan.close();
+         scanTwo.close();
+      }
    }
 }
+
