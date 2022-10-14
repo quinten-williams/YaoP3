@@ -35,7 +35,8 @@ public class project3_PellWilliamsGuzman
       File file = new File("FDs.txt");
       Scanner scan = new Scanner(file);
       int count = 0;
-     
+      
+      
       List<List<Character>> subset = new ArrayList<>();            
       String relation = scan.nextLine();
       
@@ -94,11 +95,20 @@ public class project3_PellWilliamsGuzman
          File keys = new File("closures.txt");
          Scanner scanTwo = new Scanner(keys);
          String tempTwo = "";
-
+         boolean verify = true;
+           
          while(scanTwo.hasNextLine())
-         {  
+         {   
             tempTwo = scanTwo.nextLine();
-            System.out.println(tempTwo);
+            //System.out.println(tempTwo);
+            do
+            {
+               for(int i = 0; i < count; I++)
+               {
+                  
+               }
+            
+            
          }
      /*    
          while(    
