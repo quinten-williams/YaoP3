@@ -80,9 +80,10 @@ public class project3_PellWilliamsGuzman
                
                      if(U is a subset of closure) then
                         add V to closure;
-            } //  end of the for-loop
+            } until (closure did not change on this iteration);  // end of the do loop
+ 
+      if closure contains all attributes of R then {K} is a superkey
       */
-      
       scan.close();
       output.close();
    }
