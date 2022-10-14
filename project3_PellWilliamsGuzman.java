@@ -103,12 +103,12 @@ public class project3_PellWilliamsGuzman
             //System.out.println(tempTwo);
             do
             {
-               for(int i = 0; i < count; I++)
+               for(int i = 0; i < count; i++)
                {
                   
                }
             
-            
+            }
          }
      /*    
          while(    
