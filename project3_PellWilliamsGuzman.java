@@ -121,7 +121,9 @@ public class project3_PellWilliamsGuzman
             }
          
          
-         }while(verify);     /*    
+         }while(verify);     
+      }  
+         /*    
          while(    
          do {
             for(each FD U -> V in FD) do {
@@ -133,7 +135,7 @@ public class project3_PellWilliamsGuzman
       */
          scan.close();
          scanTwo.close();
-      }
+      
    }
 }
 
