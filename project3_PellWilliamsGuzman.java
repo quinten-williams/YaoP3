@@ -33,25 +33,29 @@ public class project3_PellWilliamsGuzman
    public static void main(String[] args) throws FileNotFoundException
    {
       File file = new File("FDs.txt");
-      
-      int count = 0;
       Scanner scan = new Scanner(file);
-     
+      int count = 0;
      
       List<List<Character>> subset = new ArrayList<>();            
       String relation = scan.nextLine();
       
       ArrayList<String> U = new ArrayList<String>();
-      ArrayList<String> V = new ArrayList<String>();      
+      ArrayList<String> V = new ArrayList<String>();
+      String temp ="";   
       
       while(scan.hasNextLine())
       {
-         scan.nextLine();
+         
+         temp = scan.nextLine();
+         String[] strArray = temp.split("->",-1);
+         U.add(strArray[0]);
+         V.add(strArray[1]);
          count++;
          
       }
-      System.out.println(count);
-
+      //System.out.println(count);
+      System.out.println(U);
+      System.out.println(V);
       
       relation = relation.replaceAll("\\s+","");
       
@@ -83,16 +87,28 @@ public class project3_PellWilliamsGuzman
          closure = {k}; /*  K is one of the possible superkeys, which 
          are output of hw1. You must run each entry of the output of hw1 
          against this algorithm to determine which entry is a superkey
-         
+      */ 
+         File closures = new File("closures.txt");
+         Scanner scanTwo = new Scanner(closures);
+         String tempTwo = "";
+
+         while(scanTwo.hasNextLine())
+         {  
+            tempTwo = scanTwo.nextLine();
+            System.out.println(tempTwo);
+         }
+         /*
+         while(    
          do {
             for(each FD U -> V in FD) do {
                
                      if(U is a subset of closure) then
                         add V to closure;
             } //  end of the for-loop
-      */
       
+      */
       scan.close();
+      scanTwo.close();
       output.close();
    }
 }
