@@ -13,7 +13,7 @@ import java.io.*; //IOException FileReader FileWriter
 
 public class project3_PellWilliamsGuzmanTestTwo
 {
-   
+  
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
       if (index == nums.size())
@@ -50,7 +50,7 @@ public class project3_PellWilliamsGuzmanTestTwo
       infile = infile.replaceAll("\\s+","");
       char[] set;
       set = infile.toCharArray();
-      subsets(set);
+      //subsets(set);
       ArrayList<Character> input = new ArrayList<>();
       for(int x = 0; x < set.length; x++) 
       {
@@ -61,7 +61,7 @@ public class project3_PellWilliamsGuzmanTestTwo
       
       for(int i = 0; i < subset.size(); i++){
          for(int j = 0; j < subset.get(i).size(); j++){
-            System.out.print(subset.get(i).get(j) + " ");
+            System.out.print(subset.get(i).get(j) + "");
          }
          System.out.println();
       }
