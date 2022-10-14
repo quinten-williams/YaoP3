@@ -48,15 +48,10 @@ public class project3_PellWilliamsGuzman
       {
          scan.nextLine();
          count++;
-         System.out.println(count);
          
       }
-     
-      //String fdOne = scan.nextLine();
-      //String fdTwo = scan.nextLine();
-      //String fdThree = scan.nextLine();
-      
-      String infileTwo = relation;
+      System.out.println(count);
+
       
       relation = relation.replaceAll("\\s+","");
       
