@@ -11,7 +11,7 @@
 import java.util.*; //Scanner Collection Comp Iter and Set
 import java.io.*; //IOException FileReader FileWriter
 
-public class project3_PellWilliamsGuzmanTestTwo
+public class project3_PellWilliamsGuzman
 {
   
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
@@ -33,24 +33,24 @@ public class project3_PellWilliamsGuzmanTestTwo
    public static void main(String[] args) throws FileNotFoundException
    {
       File file = new File("FDs.txt");
-      //PrintWriter output = new PrinterWriter("superkeys.txt");
+      
       
       Scanner scan = new Scanner(file);
-     //Main List for storing all subsets
+     
      
       List<List<Character>> subset = new ArrayList<>();      
       String infile = scan.nextLine();
       
-      //System.out.println(infile); //checked if the line is within infile
+
       String fdOne = scan.nextLine();
-      //System.out.println(infileTwo);
       String fdTwo = scan.nextLine();
       String fdThree = scan.nextLine();
+      
       String infileTwo = infile;
       infile = infile.replaceAll("\\s+","");
       char[] set;
       set = infile.toCharArray();
-      //subsets(set);
+
       ArrayList<Character> input = new ArrayList<>();
       for(int x = 0; x < set.length; x++) 
       {
@@ -58,12 +58,14 @@ public class project3_PellWilliamsGuzmanTestTwo
       }
       
       findSubsets(subset, input, new ArrayList<>(), 0);
+      PrintWriter output = new PrintWriter("closures.txt");
       
       for(int i = 0; i < subset.size(); i++){
          for(int j = 0; j < subset.get(i).size(); j++){
-            System.out.print(subset.get(i).get(j) + "");
+            
+            output.print(subset.get(i).get(j));
          }
-         System.out.println();
+         output.print("\n");
       }
       
       /*
@@ -82,6 +84,6 @@ public class project3_PellWilliamsGuzmanTestTwo
       */
       
       scan.close();
-      //output.close();
+      output.close();
    }
 }
