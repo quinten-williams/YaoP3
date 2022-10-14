@@ -81,7 +81,7 @@ public class project3_PellWilliamsGuzmanTestTwo
             } //  end of the for-loop
       */
       
-      //input.close();
+      scan.close();
       //output.close();
    }
 }
