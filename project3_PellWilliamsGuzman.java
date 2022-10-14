@@ -34,24 +34,35 @@ public class project3_PellWilliamsGuzman
    {
       File file = new File("FDs.txt");
       
-      
+      int count = 0;
       Scanner scan = new Scanner(file);
      
      
-      List<List<Character>> subset = new ArrayList<>();      
+      List<List<Character>> subset = new ArrayList<>(); 
+           
       String infile = scan.nextLine();
       
-
-      String fdOne = scan.nextLine();
-      String fdTwo = scan.nextLine();
-      String fdThree = scan.nextLine();
+      while(scan.hasNextLine())
+      {
+         scan.nextLine();
+         count++;
+         System.out.println(count);
+         
+      }
+     
+      //String fdOne = scan.nextLine();
+      //String fdTwo = scan.nextLine();
+      //String fdThree = scan.nextLine();
       
       String infileTwo = infile;
+      
       infile = infile.replaceAll("\\s+","");
+      
       char[] set;
       set = infile.toCharArray();
-
+   
       ArrayList<Character> input = new ArrayList<>();
+      
       for(int x = 0; x < set.length; x++) 
       {
          input.add(set[x]);
@@ -67,6 +78,7 @@ public class project3_PellWilliamsGuzman
          }
          output.print("\n");
       }
+     
       
       /*
          Algorithm:
@@ -80,10 +92,9 @@ public class project3_PellWilliamsGuzman
                
                      if(U is a subset of closure) then
                         add V to closure;
-            } until (closure did not change on this iteration);  // end of the do loop
- 
-      if closure contains all attributes of R then {K} is a superkey
+            } //  end of the for-loop
       */
+      
       scan.close();
       output.close();
    }
