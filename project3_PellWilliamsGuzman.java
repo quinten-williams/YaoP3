@@ -11,7 +11,7 @@
 import java.util.*; //Scanner Collection Comp Iter and Set
 import java.io.*; //IOException FileReader FileWriter
 
-public class project3_PellWilliamsGuzman
+public class project3_PellWilliamsGuzmanTestTwo
 {
    static void subsets(char[] arr)
    {
@@ -23,13 +23,29 @@ public class project3_PellWilliamsGuzman
          {
             if((i & (1 << j)) > 0) 
             {
-               System.out.print(arr[j] + "");  
+               //System.out.print(arr[j] + "");  
             }
          }
          
-         System.out.print("\n");
+        // System.out.print("\n");
       }
    
+   }
+   
+   static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
+   {
+      if (index == nums.size())
+      {
+         subset.add(output);
+         return;
+      }
+      
+        // Not Including Value which is at Index
+      findSubsets(subset, nums, new ArrayList<>(output), index + 1);
+   
+        // Including Value which is at Index
+      output.add(nums.get(index));
+      findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
   
    public static void main(String[] args) throws FileNotFoundException
@@ -38,18 +54,36 @@ public class project3_PellWilliamsGuzman
       //PrintWriter output = new PrinterWriter("superkeys.txt");
       
       Scanner scan = new Scanner(file);
-      
+     //Main List for storing all subsets
+     
+      List<List<Character>> subset = new ArrayList<>();      
       String infile = scan.nextLine();
+      
       //System.out.println(infile); //checked if the line is within infile
       String fdOne = scan.nextLine();
       //System.out.println(infileTwo);
       String fdTwo = scan.nextLine();
       String fdThree = scan.nextLine();
-      
+      String infileTwo = infile;
       infile = infile.replaceAll("\\s+","");
       char[] set;
       set = infile.toCharArray();
       subsets(set);
+      ArrayList<Character> input = new ArrayList<>();
+      for(int x = 0; x < set.length; x++) 
+      {
+         input.add(set[x]);
+      }
+      
+      findSubsets(subset, input, new ArrayList<>(), 0);
+      
+      for(int i = 0; i < subset.size(); i++){
+         for(int j = 0; j < subset.get(i).size(); j++){
+            System.out.print(subset.get(i).get(j) + " ");
+         }
+         System.out.println();
+      }
+      
       /*
          Algorithm:
          
