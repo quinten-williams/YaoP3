@@ -13,14 +13,43 @@ import java.io.*; //IOException FileReader FileWriter
 
 public class project3_PellWilliamsGuzman
 {
-
-   public static void main(String[] args) throws IOException
+   static void subsets(char[] arr)
    {
-      File infile = new File("FDs.txt");
-      Scanner input = new Scanner(infile);
+      int count = arr.length;
       
-      PrintWriter output = new PrinterWriter("superkeys.txt");
+      for(int i = 0; i < (1 << count); i++)
+      {
+         for(int j = 0; j < count; j++) 
+         {
+            if((i & (1 << j)) > 0) 
+            {
+               System.out.print(arr[j] + "");  
+            }
+         }
+         
+         System.out.print("\n");
+      }
+   
+   }
+  
+   public static void main(String[] args) throws FileNotFoundException
+   {
+      File file = new File("FDs.txt");
+      //PrintWriter output = new PrinterWriter("superkeys.txt");
       
+      Scanner scan = new Scanner(file);
+      
+      String infile = scan.nextLine();
+      //System.out.println(infile); //checked if the line is within infile
+      String fdOne = scan.nextLine();
+      //System.out.println(infileTwo);
+      String fdTwo = scan.nextLine();
+      String fdThree = scan.nextLine();
+      
+      infile = infile.replaceAll("\\s+","");
+      char[] set;
+      set = infile.toCharArray();
+      subsets(set);
       /*
          Algorithm:
          
@@ -35,9 +64,8 @@ public class project3_PellWilliamsGuzman
                         add V to closure;
             } //  end of the for-loop
       */
-      input.close();
-      output.close();
-
       
+      //input.close();
+      //output.close();
    }
 }
