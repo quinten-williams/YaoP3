@@ -38,9 +38,11 @@ public class project3_PellWilliamsGuzman
       Scanner scan = new Scanner(file);
      
      
-      List<List<Character>> subset = new ArrayList<>(); 
-           
-      String infile = scan.nextLine();
+      List<List<Character>> subset = new ArrayList<>();            
+      String relation = scan.nextLine();
+      
+      ArrayList<String> U = new ArrayList<String>();
+      ArrayList<String> V = new ArrayList<String>();      
       
       while(scan.hasNextLine())
       {
@@ -54,12 +56,12 @@ public class project3_PellWilliamsGuzman
       //String fdTwo = scan.nextLine();
       //String fdThree = scan.nextLine();
       
-      String infileTwo = infile;
+      String infileTwo = relation;
       
-      infile = infile.replaceAll("\\s+","");
+      relation = relation.replaceAll("\\s+","");
       
       char[] set;
-      set = infile.toCharArray();
+      set = relation.toCharArray();
    
       ArrayList<Character> input = new ArrayList<>();
       
