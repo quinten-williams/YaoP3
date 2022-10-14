@@ -22,10 +22,9 @@ public class project3_PellWilliamsGuzman
          return;
       }
       
-        // Not Including Value which is at Index
+
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    
-        // Including Value which is at Index
       output.add(nums.get(index));
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
@@ -105,10 +104,18 @@ public class project3_PellWilliamsGuzman
             {
                for(int i = 0; i < count; i++)
                {
+                  if() 
+                  {
+                  
+                  }
                   
                }
+               if()
+               {
+                  verify = false;
+               }
             
-            }
+            }while(verify);
          }
      /*    
          while(    
