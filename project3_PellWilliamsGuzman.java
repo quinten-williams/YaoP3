@@ -13,6 +13,24 @@ import java.io.*; //IOException Printfile FileWriter
 
 public class project3_PellWilliamsGuzmanTest
 {
+   static String removeDuplicates(String str)
+   {
+        String result = "";
+       //Create LinkedHashSet of type character
+       LinkedHashSet<Character> set = new LinkedHashSet<>();
+       //Add each character of the string into LinkedHashSet
+       for(int i=0;i<str.length();i++)
+           set.add(str.charAt(i));
+
+       //
+       for(Character ch : set)
+       {
+           result = result + ch;
+       }
+
+
+       return result;
+   }
   
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
@@ -98,9 +116,9 @@ public class project3_PellWilliamsGuzmanTest
          {  
             do
             {
-               if()
+               if(tempTwo.contains(U[i]))
                {
-               
+                  tempChange = tempChange + V[i];
                }
             }
          }
@@ -110,7 +128,8 @@ public class project3_PellWilliamsGuzmanTest
             super_keys.println(tempTwo);
          }
          */
-      }while(scanTwo.hasNextLine())      
+      }while(scanTwo.hasNextLine()) 
+           
       scan.close();
       scanTwo.close();
       super_keys.close();
