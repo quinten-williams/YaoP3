@@ -29,6 +29,25 @@ public class project3_PellWilliamsGuzman
       output.add(nums.get(index));
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
+   
+   static String removeDuplicates(String str)
+   {
+        String result = "";
+       //Create LinkedHashSet of type character
+       LinkedHashSet<Character> set = new LinkedHashSet<>();
+       //Add each character of the string into LinkedHashSet
+       for(int i=0;i<str.length();i++)
+           set.add(str.charAt(i));
+
+       //
+       for(Character ch : set)
+       {
+           result = result + ch;
+       }
+
+
+       return result;
+   }
   
    public static void main(String[] args) throws FileNotFoundException
    {
@@ -87,11 +106,12 @@ public class project3_PellWilliamsGuzman
       File keys = new File("closures.txt");
       Scanner scanTwo = new Scanner(keys);
       String tempTwo = "";
-      boolean verify = false;
+      
       PrintWriter super_keys = new PrintWriter("superkeys.txt");
            
       while(scanTwo.hasNextLine())
       {   
+    	 boolean verify = false;
          tempTwo = scanTwo.nextLine();
           
          for(int i = 0; i < count; i++) // loop for each FD
@@ -100,6 +120,7 @@ public class project3_PellWilliamsGuzman
             char[] Vchar = V.get(i).toCharArray();
             int ulen = 0;
             int Utest = 0;
+            String copyAtTime = "";
             char[] charOfkey = tempTwo.toCharArray();
             
             for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure  ABC
@@ -117,45 +138,53 @@ public class project3_PellWilliamsGuzman
                      // then Utest will equal the length of Uchar
                   
             char[] copy = new char[charOfkey.length + Vchar.length];
-            char[] charRelation = relation.toCharArray();
+            //char[] charRelation = relation.toCharArray();
             
             if(Utest == Uchar.length) // U is a subset of Relation 
             {
                 	  
-               for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation
+               for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation relation is : CDF
                {
                   copy[j] = charOfkey[j];
                   
-                  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
+                  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD which is AE
                   { 
-                     copy[charOfkey.length + k] = Vchar[k];                        	  
+                     copy[charOfkey.length + k] = Vchar[k]; 
+                     copyAtTime = new String(copy);
+                     System.out.println("Copy  : " + copyAtTime + "  when j is :" + j + " And the closure is: " + tempTwo + "when fd is: " + i );
+                     
+                     
+                     
                   }
                }
             }
+            /*char charArray[] = str.toCharArray();
+            Arrays.sort(charArray);
+            System.out.println(new String(charArray));*/
+            Arrays.sort(copy);
+            String cpyStr = new String(copy);
+            cpyStr = removeDuplicates(cpyStr);
+            cpyStr = cpyStr.replaceAll("\\s+","");
+            //System.out.println("Copy after edit : " + cpyStr +" The Relation: "+ relation + " And the closure is: " + tempTwo + "when fd is: " + count );
             
-            int relCheck = 0;
-            
-            for(char c: charRelation)
+            if(relation.equalsIgnoreCase(cpyStr)) 
             {
-               if(relCheck < copy.length)
-               {
-                  if(c == copy[relCheck]) 
-                  {
-                     relCheck++;
-                  }
-               } 	  
+               verify = true; 
+               super_keys.println(tempTwo);
+               System.out.println("Printed : " + tempTwo + "  To the file");
             }
-            
-            if(relCheck == charRelation.length) 
+            /*if(verify)
             {
-               verify = true;              
-            }                     
+               super_keys.println(tempTwo);
+               System.out.println("Printed : " + tempTwo + "  To the file");
+            }*/
          }
          
-         if(verify)
+         /*if(verify)
          {
             super_keys.println(tempTwo);
-         }
+            System.out.println("Printed : " + tempTwo + "  To the file");
+         }*/
       }      
       scan.close();
       scanTwo.close();
