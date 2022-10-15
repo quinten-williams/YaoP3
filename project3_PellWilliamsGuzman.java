@@ -97,13 +97,11 @@ public class project3_PellWilliamsGuzman
          String tempTwo = "";
          boolean verify = true;
          PrintWriter super_keys = new PrintWriter("superkeys.txt");
-      
+           
          while(scanTwo.hasNextLine())
          {   
             tempTwo = scanTwo.nextLine();
             //System.out.println(tempTwo);
-            do
-            {
                for(int i = 0; i < count; i++) // loop for each FD
                {
                   char[] Uchar = U.get(i).toCharArray();
@@ -160,10 +158,7 @@ public class project3_PellWilliamsGuzman
                   
                 }
             
-            
-            }while(verify);
-            
-            super_keys.close();
+          super_keys.close();
          }
      /*    
          while(    
