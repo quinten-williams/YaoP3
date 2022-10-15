@@ -13,18 +13,27 @@ import java.io.*; //IOException Printfile FileWriter
 
 public class project3_PellWilliamsGuzmanTest
 {  
+   /*
+     A recursive method that produces all of the subsets of a given set.
+     The subset parameter is a list containing mutiple character lists of subsets.
+     The nums parameter is a list containing the original set whose subsets we wish to produce.
+     The output parameter is each individual subset produced, that will be added to the subset list.
+     We use the index parameter to specify which element of the nums list needs to be added to the output list.
+     This method doesn't return anything, but instead fills an empty list with all of the subsets of the specified set.
+   */
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
+      
       if (index == nums.size())
       {
          subset.add(output);
          return;
       }
       
-        // Not Including Value which is at Index
+      //Not including value which is at index
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    
-        // Including Value which is at Index
+      //including value which is at index
       output.add(nums.get(index));
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
@@ -34,14 +43,18 @@ public class project3_PellWilliamsGuzmanTest
       File file = new File("FDs.txt");
       Scanner scan = new Scanner(file);
       int count = 0;
-           
-      List<List<Character>> subset = new ArrayList<>();            
+      //A list that will be used to store the subsets of the original relation    
+      List<List<Character>> subset = new ArrayList<>();  
+      //saves the attributes of the original relation into a String
       String relation = scan.nextLine();
       
+      //List for the U values of any functional dependency U -> V
       ArrayList<String> U = new ArrayList<String>();
+      //List for the V values of any functional dependency U -> V
       ArrayList<String> V = new ArrayList<String>();
       String temp ="";   
       
+      //Adds each part of each functional dependency to its own seperate list
       while(scan.hasNextLine())
       {     
          temp = scan.nextLine();
@@ -53,6 +66,7 @@ public class project3_PellWilliamsGuzmanTest
       
       relation = relation.replaceAll("\\s+","");
       
+      //First turn the relation string into a char array, so that we can then convert it to an array list
       char[] set;
       set = relation.toCharArray();
    
@@ -63,7 +77,10 @@ public class project3_PellWilliamsGuzmanTest
          input.add(set[x]);
       }
       
+      //this will produce all of the subsets of the relation
       findSubsets(subset, input, new ArrayList<>(), 0);
+      
+      //Next we'll add all of the subsets to its own file
       PrintWriter output = new PrintWriter("closures.txt");
       
       for(int i = 0; i < subset.size(); i++)
