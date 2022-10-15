@@ -22,9 +22,10 @@ public class project3_PellWilliamsGuzman
          return;
       }
       
-   
+        // Not Including Value which is at Index
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    
+        // Including Value which is at Index
       output.add(nums.get(index));
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
@@ -91,39 +92,56 @@ public class project3_PellWilliamsGuzman
          are output of hw1. You must run each entry of the output of hw1 
          against this algorithm to determine which entry is a superkey
       */
-      File keys = new File("closures.txt");
-      Scanner scanTwo = new Scanner(keys);
-      String tempTwo = "";
-      boolean verify = true;
+         File keys = new File("closures.txt");
+         Scanner scanTwo = new Scanner(keys);
+         String tempTwo = "";
+         boolean verify = true;
            
-      while(scanTwo.hasNextLine())
-      {
-         tempTwo = scanTwo.nextLine();
+         while(scanTwo.hasNextLine())
+         {   
+            tempTwo = scanTwo.nextLine();
             //System.out.println(tempTwo);
-         do
-         {
-            for(int i = 0; i < count; i++) // loop for each FD
+            do
             {
-               char[] Uchar = U.get(i).toCharArray();
-               char[] charOfkey = tempTwo.toCharArray();
-               for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
+               for(int i = 0; i < count; i++) // loop for each FD
                {
-                  for(int k = 0; k < Uchar.length; k++) // loop for characters in the U (left) of the FD
+            	  boolean contains = true;
+                  char[] Uchar = U.get(i).toCharArray();
+                  char[] Vchar = V.get(i).toCharArray();
+                  char[] charOfkey = tempTwo.toCharArray();
+                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
                   {
-                     char hold = Uchar[k];
-                     if(charOfkey[j] == hold)
-                     {
-                     
-                     }
-                  }
-               
-               }
-            }
-         
-         
-         }while(verify);     
-      }  
-         /*    
+                	  for(int k = 0; k < Uchar.length; k++) // loop for characters in the U (left) of the FD
+                	  {
+                		  char hold = Uchar[k];
+                    	  if(!(charOfkey[j] == hold))
+                    	  {
+                    		 contains = false; 
+                    	  }
+                	  }
+                   }
+                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
+                  {
+                	  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
+                	  {   
+                		  int index = 0;
+                		  char hold = Vchar[k];
+                		  char[] copy = new char[charOfkey.length];
+                    	  if(!(charOfkey[j] == hold))
+                    	  {
+                    		  copy[index] = charOfkey[j];
+                    		  index++;
+                    	  }
+                	  }
+                   }
+                  // a functional dependency has been solved and copy 
+                  // can be written to the solutions file 
+                }
+            
+            
+            }while(verify);
+         }
+     /*    
          while(    
          do {
             for(each FD U -> V in FD) do {
@@ -133,9 +151,7 @@ public class project3_PellWilliamsGuzman
             } //  end of the for-loop
       
       */
-         scan.close();
-         scanTwo.close();
-      
+      scan.close();
+      scanTwo.close();
    }
 }
-
