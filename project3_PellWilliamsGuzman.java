@@ -86,53 +86,50 @@ public class project3_PellWilliamsGuzmanTest
       
       File keys = new File("closures.txt");
       Scanner scanTwo = new Scanner(keys);
-      String tempChange = "";
-      boolean verify = false;
       PrintWriter super_keys = new PrintWriter("superkeys.txt");
            
       while(scanTwo.hasNextLine())
       {   
          String tempTwo = scanTwo.nextLine();
-         Set<String> closures = new HashSet<>();
+         
+         Set<String> closures = new HashSet<String>();
          
          for (char c: tempTwo.toCharArray())
          {
             closures.add("" + c);
-            //System.out.println(closures); CHECK
+            
          }
          
-         //System.out.println(closures);
-         Set<String> closures_Two = new HashSet<>(closures);
-         //System.out.println(closures_Two); CHECK
+         
+         Set<String> closures_Two = new HashSet<String>(closures);
+         
          do
          {
-            //System.out.println(closures);
+            
             for(int i = 0; i < count; i++)
             {  
-               //System.out.println(closures);
-               String leftFD = U.get(i);
-               //System.out.println(U.get(i)); CHECK
                
+               String leftFD = U.get(i); 
                String rightFD = V.get(i);
-               //System.out.println(V.get(i));  CHECK
+               
                
                boolean verifySub = true;
-               //System.out.println(closures); CHECK
                for(char c: leftFD.toCharArray())
                {
-                  //System.out.println(closures); CHECK
+                  
                   if(!closures.contains("" + c));
                   {
-                     //System.out.println(closures);CHECK
+                  
                      verifySub = false;
                   }
-                  System.out.println(closures);
-               }
                
+               }
+               //System.out.println(closures);
                if(verifySub)
                {
-                  //System.out.println(closures);
-                  //closures_Two = new HashSet<>(closures);
+                  
+                  //System.out.println(closures); //////////////////////
+                  closures_Two = new HashSet<String>(closures);
                   //System.out.print(closures_Two);
                   for(char c: rightFD.toCharArray())
                   {
@@ -142,7 +139,7 @@ public class project3_PellWilliamsGuzmanTest
                   }
                }
             }  
-           //System.out.println(tempTwo); CHECK
+         
          
          } while(!closures.equals(closures_Two));
          
