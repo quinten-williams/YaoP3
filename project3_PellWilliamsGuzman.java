@@ -11,8 +11,26 @@
 import java.util.*; //Scanner Collection, Arraylist, 
 import java.io.*; //IOException Printfile FileWriter
 
-public class project3_PellWilliamsGuzman
+public class project3_PellWilliamsGuzmanTest
 {
+   static String removeDuplicates(String str)
+   {
+      String result = "";
+       //Create LinkedHashSet of type character
+      LinkedHashSet<Character> set = new LinkedHashSet<>();
+       //Add each character of the string into LinkedHashSet
+      for(int i=0;i<str.length();i++)
+         set.add(str.charAt(i));
+   
+       //
+      for(Character ch : set)
+      {
+         result = result + ch;
+      }
+   
+   
+      return result;
+   }
   
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
@@ -28,25 +46,6 @@ public class project3_PellWilliamsGuzman
         // Including Value which is at Index
       output.add(nums.get(index));
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
-   }
-   
-   static String removeDuplicates(String str)
-   {
-        String result = "";
-       //Create LinkedHashSet of type character
-       LinkedHashSet<Character> set = new LinkedHashSet<>();
-       //Add each character of the string into LinkedHashSet
-       for(int i=0;i<str.length();i++)
-           set.add(str.charAt(i));
-
-       //
-       for(Character ch : set)
-       {
-           result = result + ch;
-       }
-
-
-       return result;
    }
   
    public static void main(String[] args) throws FileNotFoundException
@@ -102,91 +101,87 @@ public class project3_PellWilliamsGuzman
       }
       
       output.close();
+      scan.close();
       
       File keys = new File("closures.txt");
       Scanner scanTwo = new Scanner(keys);
-      String tempTwo = "";
-      
+      String tempChange = "";
+      boolean verify = false;
       PrintWriter super_keys = new PrintWriter("superkeys.txt");
            
       while(scanTwo.hasNextLine())
       {   
-    	 boolean verify = false;
-         tempTwo = scanTwo.nextLine();
-          
-         for(int i = 0; i < count; i++) // loop for each FD
+         String tempTwo = scanTwo.nextLine();
+         Set<String> closures = new HashSet<>();
+         
+         for (char c: tempTwo.toCharArray())
          {
-            char[] Uchar = U.get(i).toCharArray();
-            char[] Vchar = V.get(i).toCharArray();
-            int ulen = 0;
-            int Utest = 0;
-            String copyAtTime = "";
-            char[] charOfkey = tempTwo.toCharArray();
-            
-            for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure  ABC
-            {
-               if(ulen < Uchar.length)
-               {
-                  if(charOfkey[j] == Uchar[ulen]) // when a match occurs a counter is incremented AB
-                  {
-                     Utest++;
-                     ulen++;
-                  }
-               }
-                	  
-            } // end of current closure loop if all the attributes of U are present in closure 
-                     // then Utest will equal the length of Uchar
-                  
-            char[] copy = new char[charOfkey.length + Vchar.length];
-            //char[] charRelation = relation.toCharArray();
-            
-            if(Utest == Uchar.length) // U is a subset of Relation 
-            {
-                	  
-               for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation relation is : CDF
-               {
-                  copy[j] = charOfkey[j];
-                  
-                  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD which is AE
-                  { 
-                     copy[charOfkey.length + k] = Vchar[k]; 
-                     copyAtTime = new String(copy);
-                     System.out.println("Copy  : " + copyAtTime + "  when j is :" + j + " And the closure is: " + tempTwo + "when fd is: " + i );
-                     
-                     
-                     
-                  }
-               }
-            }
-            /*char charArray[] = str.toCharArray();
-            Arrays.sort(charArray);
-            System.out.println(new String(charArray));*/
-            Arrays.sort(copy);
-            String cpyStr = new String(copy);
-            cpyStr = removeDuplicates(cpyStr);
-            cpyStr = cpyStr.replaceAll("\\s+","");
-            //System.out.println("Copy after edit : " + cpyStr +" The Relation: "+ relation + " And the closure is: " + tempTwo + "when fd is: " + count );
-            
-            if(relation.equalsIgnoreCase(cpyStr)) 
-            {
-               verify = true; 
-               super_keys.println(tempTwo);
-               System.out.println("Printed : " + tempTwo + "  To the file");
-            }
-            /*if(verify)
-            {
-               super_keys.println(tempTwo);
-               System.out.println("Printed : " + tempTwo + "  To the file");
-            }*/
+            closures.add("" + c);
+            //System.out.println(closures); CHECK
          }
          
-         /*if(verify)
+         //System.out.println(closures);
+         Set<String> closures_Two = new HashSet<>(closures);
+         //System.out.println(closures_Two); CHECK
+         do
          {
+            //System.out.println(closures);
+            for(int i = 0; i < count; i++)
+            {  
+               //System.out.println(closures);
+               String leftFD = U.get(i);
+               //System.out.println(U.get(i)); CHECK
+               
+               String rightFD = V.get(i);
+               //System.out.println(V.get(i));  CHECK
+               
+               boolean verifySub = true;
+               //System.out.println(closures); CHECK
+               for(char c: leftFD.toCharArray())
+               {
+                  //System.out.println(closures); CHECK
+                  if(!closures.contains("" + c));
+                  {
+                     //System.out.println(closures);CHECK
+                     verifySub = false;
+                  }
+                  System.out.println(closures);
+               }
+               
+               if(verifySub)
+               {
+                  //System.out.println(closures);
+                  //closures_Two = new HashSet<>(closures);
+                  //System.out.print(closures_Two);
+                  for(char c: rightFD.toCharArray())
+                  {
+                     //System.out.println(closures);
+                     closures.add("" + c);
+                     //System.out.println(closures);
+                  }
+               }
+            }  
+           //System.out.println(tempTwo); CHECK
+         
+         } while(!closures.equals(closures_Two));
+         
+         boolean printClosures = true;
+         for(char c: relation.toCharArray())
+         {
+            if(!closures.contains("" + c))
+            {
+               printClosures = false;
+            }
+         }
+         
+         if(printClosures)
+         {
+            //System.out.println(tempTwo);
             super_keys.println(tempTwo);
-            System.out.println("Printed : " + tempTwo + "  To the file");
-         }*/
-      }      
-      scan.close();
+         } 
+      } 
+           
+      
       scanTwo.close();
       super_keys.close();
    }
