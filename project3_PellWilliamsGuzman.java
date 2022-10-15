@@ -146,7 +146,7 @@ public class project3_PellWilliamsGuzman
                   if(c == copy[relCheck]) 
                   {
                      relCheck++;
-                   }
+                  }
                } 	  
             }
             
