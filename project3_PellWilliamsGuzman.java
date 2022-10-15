@@ -120,20 +120,23 @@ public class project3_PellWilliamsGuzman
                     	  }
                 	  }
                    }
-                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
+                  if(contains)
                   {
-                	  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
-                	  {   
-                		  int index = 0;
-                		  char hold = Vchar[k];
-                		  char[] copy = new char[charOfkey.length];
-                    	  if(!(charOfkey[j] == hold))
-                    	  {
-                    		  copy[index] = charOfkey[j];
+                	  int index = 1;
+                	  char[] copy = new char[charOfkey.length + Vchar.length];
+                	  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
+                      {
+                		  copy[j] = charOfkey[j];
+                    	  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
+                    	  { 
+                    		  copy[charOfkey.length + index] = Vchar[k];
                     		  index++;
+                        	  
                     	  }
-                	  }
-                   }
+                       }
+                  }
+                
+                  
                   // a functional dependency has been solved and copy 
                   // can be written to the solutions file 
                 }
