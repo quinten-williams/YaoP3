@@ -105,25 +105,36 @@ public class project3_PellWilliamsGuzman
             {
                for(int i = 0; i < count; i++) // loop for each FD
                {
-            	  boolean contains = true;
+            	  //boolean contains = true;
                   char[] Uchar = U.get(i).toCharArray();
                   char[] Vchar = V.get(i).toCharArray();
+                  int ulen = Uchar.length;
+                  int Utest = 0;
                   char[] charOfkey = tempTwo.toCharArray();
-                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
+                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key ABC
                   {
-                	  for(int k = 0; k < Uchar.length; k++) // loop for characters in the U (left) of the FD
+                	  if(charOfkey[j] == Uchar[ulen])
+                	  {
+                		  Utest++;
+                	  }
+                	  
+                	  
+                	  /*for(int k = 0; k < Uchar.length; k++) // loop for characters in the U (left) of the FD AB
                 	  {
                 		  char hold = Uchar[k];
                     	  if(!(charOfkey[j] == hold))
                     	  {
                     		 contains = false; 
                     	  }
-                	  }
+                	  }*/
                    }
-                  if(contains)
+                  
+                  char[] copy = new char[charOfkey.length + Vchar.length];
+                  char[] charRelation = relation.toCharArray();
+                  if(Utest == ulen)
                   {
                 	  int index = 1;
-                	  char[] copy = new char[charOfkey.length + Vchar.length];
+                	  
                 	  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
                       {
                 		  copy[j] = charOfkey[j];
@@ -134,6 +145,17 @@ public class project3_PellWilliamsGuzman
                         	  
                     	  }
                        }
+                  }
+                  for(char c: charRelation)
+                  {
+                	  for(char n: copy)
+                	  {
+                		  if(!(n == c))  
+                		  {
+                			  
+                		  }
+                	  }
+                	  
                   }
                 
                   
