@@ -8,8 +8,8 @@
    for the relation to an output file (named "superkeys").
    
 */
-import java.util.*; //Scanner Collection Comp Iter and Set
-import java.io.*; //IOException FileReader FileWriter
+import java.util.*; //Scanner Collection, Arraylist, 
+import java.io.*; //IOException Printfile FileWriter
 
 public class project3_PellWilliamsGuzman
 {
@@ -35,8 +35,7 @@ public class project3_PellWilliamsGuzman
       File file = new File("FDs.txt");
       Scanner scan = new Scanner(file);
       int count = 0;
-      
-      
+           
       List<List<Character>> subset = new ArrayList<>();            
       String relation = scan.nextLine();
       
@@ -45,18 +44,13 @@ public class project3_PellWilliamsGuzman
       String temp ="";   
       
       while(scan.hasNextLine())
-      {
-         
+      {     
          temp = scan.nextLine();
          String[] strArray = temp.split("->",-1);
          U.add(strArray[0]);
          V.add(strArray[1]);
          count++;
-         
       }
-      //System.out.println(count);
-      System.out.println(U);
-      System.out.println(V);
       
       relation = relation.replaceAll("\\s+","");
       
@@ -73,25 +67,23 @@ public class project3_PellWilliamsGuzman
       findSubsets(subset, input, new ArrayList<>(), 0);
       PrintWriter output = new PrintWriter("closures.txt");
       
-      for(int i = 0; i < subset.size(); i++){
-         for(int j = 0; j < subset.get(i).size(); j++){
+      for(int i = 0; i < subset.size(); i++)
+      {
+      
+         for(int j = 0; j < subset.get(i).size(); j++)
+         {
             
             output.print(subset.get(i).get(j));
          }
+         
          if(i != 0) 
          {
             output.print("\n");
          }
       }
+      
       output.close();
       
-      /*
-         Algorithm:
-         
-         closure = {k}; /*  K is one of the possible superkeys, which 
-         are output of hw1. You must run each entry of the output of hw1 
-         against this algorithm to determine which entry is a superkey
-      */
       File keys = new File("closures.txt");
       Scanner scanTwo = new Scanner(keys);
       String tempTwo = "";
@@ -101,7 +93,7 @@ public class project3_PellWilliamsGuzman
       while(scanTwo.hasNextLine())
       {   
          tempTwo = scanTwo.nextLine();
-            //System.out.println(tempTwo);
+          
          for(int i = 0; i < count; i++) // loop for each FD
          {
             char[] Uchar = U.get(i).toCharArray();
@@ -109,6 +101,7 @@ public class project3_PellWilliamsGuzman
             int ulen = 0;
             int Utest = 0;
             char[] charOfkey = tempTwo.toCharArray();
+            
             for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure  ABC
             {
                if(ulen < Uchar.length)
@@ -125,20 +118,23 @@ public class project3_PellWilliamsGuzman
                   
             char[] copy = new char[charOfkey.length + Vchar.length];
             char[] charRelation = relation.toCharArray();
+            
             if(Utest == Uchar.length) // U is a subset of Relation 
             {
                 	  
                for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation
                {
                   copy[j] = charOfkey[j];
+                  
                   for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
                   { 
-                     copy[charOfkey.length + k] = Vchar[k];
-                        	  
+                     copy[charOfkey.length + k] = Vchar[k];                        	  
                   }
                }
             }
+            
             int relCheck = 0;
+            
             for(char c: charRelation)
             {
                if(relCheck < copy.length)
@@ -152,17 +148,15 @@ public class project3_PellWilliamsGuzman
             
             if(relCheck == charRelation.length) 
             {
-               verify = true;
-               
-            }
-                     
+               verify = true;              
+            }                     
          }
+         
          if(verify)
          {
             super_keys.println(tempTwo);
          }
-      }
-      
+      }      
       scan.close();
       scanTwo.close();
       super_keys.close();
