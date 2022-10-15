@@ -110,23 +110,27 @@ public class project3_PellWilliamsGuzman
                   int ulen = 0;
                   int Utest = 0;
                   char[] charOfkey = tempTwo.toCharArray();
-                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure
+                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure  ABC
                   {
-                	  if(charOfkey[j] == Uchar[ulen]) // when a match occurs a counter is incremented 
+                	  if(ulen < Uchar.length)
                 	  {
-                		  Utest++;
-                		  ulen++;
+                		  if(charOfkey[j] == Uchar[ulen]) // when a match occurs a counter is incremented AB
+                    	  {
+                    		  Utest++;
+                    		  ulen++;
+                    	  }
                 	  }
+                	  
                   } // end of current closure loop if all the attributes of U are present in closure 
                      // then Utest will equal the length of Uchar
                   
                   char[] copy = new char[charOfkey.length + Vchar.length];
                   char[] charRelation = relation.toCharArray();
-                  if(Utest == Uchar.length)
+                  if(Utest == Uchar.length) // U is a subset of Relation 
                   {
                 	  int index = 1;
                 	  
-                	  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key
+                	  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation
                       {
                 		  copy[j] = charOfkey[j];
                     	  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
@@ -137,21 +141,22 @@ public class project3_PellWilliamsGuzman
                     	  }
                        }
                   }
+                  int relCheck = 0;
                   for(char c: charRelation)
                   {
-                	  for(char n: copy)
+                	  if(c == copy[relCheck]) 
                 	  {
-                		  if(!(n == c))  
-                		  {
-                			  
-                		  }
+                		  relCheck++;
                 	  }
                 	  
                   }
+                  if(relCheck == charRelation.length) 
+                  {
+                	  //add closure to superkey file
+                  }
                 
                   
-                  // a functional dependency has been solved and copy 
-                  // can be written to the solutions file 
+                  
                 }
             
             
