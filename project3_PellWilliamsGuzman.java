@@ -95,7 +95,7 @@ public class project3_PellWilliamsGuzman
       File keys = new File("closures.txt");
       Scanner scanTwo = new Scanner(keys);
       String tempTwo = "";
-      boolean verify = true;
+      boolean verify = false;
       PrintWriter super_keys = new PrintWriter("superkeys.txt");
            
       while(scanTwo.hasNextLine())
@@ -152,11 +152,15 @@ public class project3_PellWilliamsGuzman
             
             if(relCheck == charRelation.length) 
             {
-               super_keys.println(tempTwo);
-            }         
+               verify = true;
+               
+            }
+                     
          }
-            
-         
+         if(verify)
+         {
+            super_keys.println(tempTwo);
+         }
       }
       
       scan.close();
