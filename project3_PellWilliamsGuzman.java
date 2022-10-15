@@ -162,6 +162,8 @@ public class project3_PellWilliamsGuzman
             
             
             }while(verify);
+            
+            super_keys.close();
          }
      /*    
          while(    
