@@ -119,6 +119,7 @@ public class project3_PellWilliamsGuzmanTest
                if(tempTwo.contains(U[i]))
                {
                   tempChange = tempChange + V[i];
+                  tempChange = removeDuplicates(tempChange);
                }
             }
          }
