@@ -105,33 +105,24 @@ public class project3_PellWilliamsGuzman
             {
                for(int i = 0; i < count; i++) // loop for each FD
                {
-            	  //boolean contains = true;
                   char[] Uchar = U.get(i).toCharArray();
                   char[] Vchar = V.get(i).toCharArray();
-                  int ulen = Uchar.length;
+                  int ulen = 0;
                   int Utest = 0;
                   char[] charOfkey = tempTwo.toCharArray();
-                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the possible super key ABC
+                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure
                   {
-                	  if(charOfkey[j] == Uchar[ulen])
+                	  if(charOfkey[j] == Uchar[ulen]) // when a match occurs a counter is incremented 
                 	  {
                 		  Utest++;
+                		  ulen++;
                 	  }
-                	  
-                	  
-                	  /*for(int k = 0; k < Uchar.length; k++) // loop for characters in the U (left) of the FD AB
-                	  {
-                		  char hold = Uchar[k];
-                    	  if(!(charOfkey[j] == hold))
-                    	  {
-                    		 contains = false; 
-                    	  }
-                	  }*/
-                   }
+                  } // end of current closure loop if all the attributes of U are present in closure 
+                     // then Utest will equal the length of Uchar
                   
                   char[] copy = new char[charOfkey.length + Vchar.length];
                   char[] charRelation = relation.toCharArray();
-                  if(Utest == ulen)
+                  if(Utest == Uchar.length)
                   {
                 	  int index = 1;
                 	  
