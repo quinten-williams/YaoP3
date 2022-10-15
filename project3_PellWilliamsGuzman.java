@@ -160,8 +160,7 @@ public class project3_PellWilliamsGuzman
                         for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD which is AE
                         { 
                            copy[charOfkey.length + k] = Vchar[k]; 
-                           copyAtTime = new String(copy);
-                           System.out.println("Copy  : " + copyAtTime + "  when j is :" + j + " And the closure is: " + tempTwo + "when fd is: " + i );                                                   
+                           copyAtTime = new String(copy);                                                
                         }
                      }
                   }              
@@ -188,12 +187,10 @@ public class project3_PellWilliamsGuzman
                      {
                         if(copy[j] == 0) 
                         {                        
-                          for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD which is AE
+                           for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD which is AE
                            { 
                               copy[j + k] = Vchar[k];
                               copyAtTime = new String(copy);
-                              System.out.println("Copy  : " + copyAtTime + "  when j is :" + j + " And the closure is: " 
-                                 + tempTwo + "   when fd is: " + i );
                               break;    
                            }  	
                         }                     	 
@@ -213,9 +210,8 @@ public class project3_PellWilliamsGuzman
          if(relation.equalsIgnoreCase(cpyStr)) 
          {
             super_keys.println(tempTwo);
-            System.out.println("Printed : " + tempTwo + "  To the file");
          }
-
+      
       } // end while hasnext
       scan.close();
       scanTwo.close();
