@@ -92,85 +92,75 @@ public class project3_PellWilliamsGuzman
          are output of hw1. You must run each entry of the output of hw1 
          against this algorithm to determine which entry is a superkey
       */
-         File keys = new File("closures.txt");
-         Scanner scanTwo = new Scanner(keys);
-         String tempTwo = "";
-         boolean verify = true;
-         PrintWriter super_keys = new PrintWriter("superkeys.txt");
+      File keys = new File("closures.txt");
+      Scanner scanTwo = new Scanner(keys);
+      String tempTwo = "";
+      boolean verify = true;
+      PrintWriter super_keys = new PrintWriter("superkeys.txt");
            
-         while(scanTwo.hasNextLine())
-         {   
-            tempTwo = scanTwo.nextLine();
+      while(scanTwo.hasNextLine())
+      {   
+         tempTwo = scanTwo.nextLine();
             //System.out.println(tempTwo);
-               for(int i = 0; i < count; i++) // loop for each FD
+         for(int i = 0; i < count; i++) // loop for each FD
+         {
+            char[] Uchar = U.get(i).toCharArray();
+            char[] Vchar = V.get(i).toCharArray();
+            int ulen = 0;
+            int Utest = 0;
+            char[] charOfkey = tempTwo.toCharArray();
+            for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure  ABC
+            {
+               if(ulen < Uchar.length)
                {
-                  char[] Uchar = U.get(i).toCharArray();
-                  char[] Vchar = V.get(i).toCharArray();
-                  int ulen = 0;
-                  int Utest = 0;
-                  char[] charOfkey = tempTwo.toCharArray();
-                  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in current closure  ABC
+                  if(charOfkey[j] == Uchar[ulen]) // when a match occurs a counter is incremented AB
                   {
-                	  if(ulen < Uchar.length)
-                	  {
-                		  if(charOfkey[j] == Uchar[ulen]) // when a match occurs a counter is incremented AB
-                    	  {
-                    		  Utest++;
-                    		  ulen++;
-                    	  }
-                	  }
+                     Utest++;
+                     ulen++;
+                  }
+               }
                 	  
-                  } // end of current closure loop if all the attributes of U are present in closure 
+            } // end of current closure loop if all the attributes of U are present in closure 
                      // then Utest will equal the length of Uchar
                   
-                  char[] copy = new char[charOfkey.length + Vchar.length];
-                  char[] charRelation = relation.toCharArray();
-                  if(Utest == Uchar.length) // U is a subset of Relation 
-                  {
-                	  int index = 1;
+            char[] copy = new char[charOfkey.length + Vchar.length];
+            char[] charRelation = relation.toCharArray();
+            if(Utest == Uchar.length) // U is a subset of Relation 
+            {
                 	  
-                	  for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation
-                      {
-                		  copy[j] = charOfkey[j];
-                    	  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
-                    	  { 
-                    		  copy[charOfkey.length + index] = Vchar[k];
-                    		  index++;
+               for(int j = 0; j < charOfkey.length ; j++)  // loop for characters in the relation
+               {
+                  copy[j] = charOfkey[j];
+                  for(int k = 0; k < Vchar.length; k++) // loop for characters in the V (Right) of the FD
+                  { 
+                     copy[charOfkey.length + k] = Vchar[k];
                         	  
-                    	  }
-                       }
                   }
-                  int relCheck = 0;
-                  for(char c: charRelation)
+               }
+            }
+            int relCheck = 0;
+            for(char c: charRelation)
+            {
+               if(relCheck < copy.length)
+               {
+                  if(c == copy[relCheck]) 
                   {
-                	  if(c == copy[relCheck]) 
-                	  {
-                		  relCheck++;
-                	  }
-                	  
-                  }
-                  if(relCheck == charRelation.length) 
-                  {
-                	  super_keys.println(tempTwo);
-                  }
-                
-                  
-                  
-                }
+                     relCheck++;
+                   }
+               } 	  
+            }
             
-          super_keys.close();
+            if(relCheck == charRelation.length) 
+            {
+               super_keys.println(tempTwo);
+            }         
          }
-     /*    
-         while(    
-         do {
-            for(each FD U -> V in FD) do {
-               
-                     if(U is a subset of closure) then
-                        add V to closure;
-            } //  end of the for-loop
+            
+         
+      }
       
-      */
       scan.close();
       scanTwo.close();
+      super_keys.close();
    }
 }
