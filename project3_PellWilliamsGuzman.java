@@ -15,21 +15,21 @@ public class project3_PellWilliamsGuzmanTest
 {
    static String removeDuplicates(String str)
    {
-        String result = "";
+      String result = "";
        //Create LinkedHashSet of type character
-       LinkedHashSet<Character> set = new LinkedHashSet<>();
+      LinkedHashSet<Character> set = new LinkedHashSet<>();
        //Add each character of the string into LinkedHashSet
-       for(int i=0;i<str.length();i++)
-           set.add(str.charAt(i));
-
+      for(int i=0;i<str.length();i++)
+         set.add(str.charAt(i));
+   
        //
-       for(Character ch : set)
-       {
-           result = result + ch;
-       }
-
-
-       return result;
+      for(Character ch : set)
+      {
+         result = result + ch;
+      }
+   
+   
+      return result;
    }
   
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
@@ -105,6 +105,7 @@ public class project3_PellWilliamsGuzmanTest
       File keys = new File("closures.txt");
       Scanner scanTwo = new Scanner(keys);
       String tempTwo = "";
+      String tempChange = "";
       boolean verify = false;
       PrintWriter super_keys = new PrintWriter("superkeys.txt");
            
@@ -114,22 +115,22 @@ public class project3_PellWilliamsGuzmanTest
          tempChange = tempTwo;
          for(int i = 0; i < count; i++)
          {  
-            do
+            //do
+            //{
+            if(tempTwo.contains(U.get(i)))
             {
-               if(tempTwo.contains(U[i]))
-               {
-                  tempChange = tempChange + V[i];
-                  tempChange = removeDuplicates(tempChange);
-               }
+               tempChange = tempChange + V.get(i);
+               tempChange = removeDuplicates(tempChange);
             }
+            //}
          }
-         /*
-         if(tempTwo.contains)
+         
+         if(tempChange.equalsIgnoreCase(relation))
          {
             super_keys.println(tempTwo);
          }
-         */
-      }while(scanTwo.hasNextLine()) 
+         
+      }while(scanTwo.hasNextLine()); 
            
       scan.close();
       scanTwo.close();
