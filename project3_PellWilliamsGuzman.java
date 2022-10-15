@@ -8,64 +8,111 @@
    for the relation to an output file (named "superkeys").
    
 */
-import java.util.*; //Scanner Collection Comp Iter and Set
-import java.io.*; //IOException FileReader FileWriter
+import java.util.*; //Scanner Collection, Arraylist, 
+import java.io.*; //IOException Printfile FileWriter
 
-public class project3_PellWilliamsGuzman
+public class project3_PellWilliamsGuzmanTest
 {
-   static void subsets(char[] arr)
+  
+   static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
-      int count = arr.length;
-      
-      for(int i = 0; i < (1 << count); i++)
+      if (index == nums.size())
       {
-         for(int j = 0; j < count; j++) 
-         {
-            if((i & (1 << j)) > 0) 
-            {
-               System.out.print(arr[j] + "");  
-            }
-         }
-         
-         System.out.print("\n");
+         subset.add(output);
+         return;
       }
+      
+        // Not Including Value which is at Index
+      findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    
+        // Including Value which is at Index
+      output.add(nums.get(index));
+      findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
   
    public static void main(String[] args) throws FileNotFoundException
    {
       File file = new File("FDs.txt");
-      //PrintWriter output = new PrinterWriter("superkeys.txt");
-      
       Scanner scan = new Scanner(file);
+      int count = 0;
+           
+      List<List<Character>> subset = new ArrayList<>();            
+      String relation = scan.nextLine();
       
-      String infile = scan.nextLine();
-      //System.out.println(infile); //checked if the line is within infile
-      String fdOne = scan.nextLine();
-      //System.out.println(infileTwo);
-      String fdTwo = scan.nextLine();
-      String fdThree = scan.nextLine();
+      ArrayList<String> U = new ArrayList<String>();
+      ArrayList<String> V = new ArrayList<String>();
+      String temp ="";   
       
-      infile = infile.replaceAll("\\s+","");
+      while(scan.hasNextLine())
+      {     
+         temp = scan.nextLine();
+         String[] strArray = temp.split("->",-1);
+         U.add(strArray[0]);
+         V.add(strArray[1]);
+         count++;
+      }
+      
+      relation = relation.replaceAll("\\s+","");
+      
       char[] set;
-      set = infile.toCharArray();
-      subsets(set);
-      /*
-         Algorithm:
-         
-         closure = {k}; /*  K is one of the possible superkeys, which 
-         are output of hw1. You must run each entry of the output of hw1 
-         against this algorithm to determine which entry is a superkey
-         
-         do {
-            for(each FD U -> V in FD) do {
-               
-                     if(U is a subset of closure) then
-                        add V to closure;
-            } //  end of the for-loop
-      */
+      set = relation.toCharArray();
+   
+      ArrayList<Character> input = new ArrayList<>();
       
-      //input.close();
-      //output.close();
+      for(int x = 0; x < set.length; x++) 
+      {
+         input.add(set[x]);
+      }
+      
+      findSubsets(subset, input, new ArrayList<>(), 0);
+      PrintWriter output = new PrintWriter("closures.txt");
+      
+      for(int i = 0; i < subset.size(); i++)
+      {
+      
+         for(int j = 0; j < subset.get(i).size(); j++)
+         {
+            
+            output.print(subset.get(i).get(j));
+         }
+         
+         if(i != 0) 
+         {
+            output.print("\n");
+         }
+      }
+      
+      output.close();
+      
+      File keys = new File("closures.txt");
+      Scanner scanTwo = new Scanner(keys);
+      String tempTwo = "";
+      boolean verify = false;
+      PrintWriter super_keys = new PrintWriter("superkeys.txt");
+           
+      do
+      {   
+         tempTwo = scanTwo.nextLine();
+         tempChange = tempTwo;
+         for(int i = 0; i < count; i++)
+         {  
+            do
+            {
+               if()
+               {
+               
+               }
+            }
+         }
+         /*
+         if(tempTwo.contains)
+         {
+            super_keys.println(tempTwo);
+         }
+         */
+      }while(scanTwo.hasNextLine())      
+      scan.close();
+      scanTwo.close();
+      super_keys.close();
    }
 }
