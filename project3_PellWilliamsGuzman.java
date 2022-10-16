@@ -22,6 +22,14 @@ import java.io.*; //IOException Printfile FileWriter
 
 public class project3_PellWilliamsGuzman
 {
+   /*
+     A recursive method that produces all of the subsets of a given set.
+     The subset parameter is a list containing mutiple character lists of subsets.
+     The nums parameter is a list containing the original set whose subsets we wish to produce.
+     The output parameter is each individual subset produced, that will be added to the subset list.
+     We use the index parameter to specify which element of the nums list needs to be added to the output list.
+     This method doesn't return anything, but instead fills an empty list with all of the subsets of the specified set.
+   */
    static void findSubsets(List<List<Character>> subset, ArrayList<Character> nums, ArrayList<Character> output, int index)
    {
       if (index == nums.size())
@@ -38,6 +46,9 @@ public class project3_PellWilliamsGuzman
       findSubsets(subset, nums, new ArrayList<>(output), index + 1);
    }
 
+   /*
+     Gets rid of any excess copies of all potential superkeys
+   */
    static String removeDuplicates(String str)
    {
       String result = "";
@@ -62,13 +73,19 @@ public class project3_PellWilliamsGuzman
       Scanner scan = new Scanner(file);
       int count = 0;
    
-      List<List<Character>> subset = new ArrayList<>();            
+      
+      //A list that will be used to store the subsets of the original relation
+      List<List<Character>> subset = new ArrayList<>();  
+      //saves the attributes of the original relation into a String
       String relation = scan.nextLine();
    
+      //List for the U values of any functional dependency U -> V
       ArrayList<String> U = new ArrayList<String>();
+      //List for the V values of any functional dependency U -> V
       ArrayList<String> V = new ArrayList<String>();
       String temp ="";   
    
+      //Adds each part of each functional dependency to its own seperate list
       while(scan.hasNextLine())
       {     
          temp = scan.nextLine();
@@ -80,6 +97,7 @@ public class project3_PellWilliamsGuzman
    
       relation = relation.replaceAll("\\s+","");
    
+      //First turn the relation string into a char array, so that we can then convert it to an array list
       char[] set;
       set = relation.toCharArray();
    
@@ -90,9 +108,11 @@ public class project3_PellWilliamsGuzman
          input.add(set[x]);
       }
    
+      //this will produce all of the subsets of the relation
       findSubsets(subset, input, new ArrayList<>(), 0);
       PrintWriter output = new PrintWriter("closures.txt");
    
+      //writes the subsets to a new file called closure
       for(int i = 0; i < subset.size(); i++)
       {
       
@@ -115,6 +135,7 @@ public class project3_PellWilliamsGuzman
       String tempTwo = "";   
       PrintWriter super_keys = new PrintWriter("superkeys.txt");
      
+      //This loop will test to see if each potential superkey actually is a superkey
       while(scanTwo.hasNextLine())
       {   
          tempTwo = scanTwo.nextLine();
@@ -206,7 +227,9 @@ public class project3_PellWilliamsGuzman
             
             }while(doCount < 2);         
          }  // end FD loop 
-          
+         
+         // If we get here, that means that the potential superkey actually is a superkey
+         // thus, we'll add it to the output file
          if(relation.equalsIgnoreCase(cpyStr)) 
          {
             super_keys.println(tempTwo);
